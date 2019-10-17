@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}
+Calculation
+{% endblock %}
+{% block content %}
+
+<h1>{{ report.header }}</h1>
+
+{% for section in report.sections %}
+    <div class="report-div">
+        {% for step in section.steps %}
+            <div>
+                {%if step.symbol %}
+                    <span class="message">{{ step.description }}</span>
+                    <span class="message">\({{ step.symbol }}\) = </span>
+                    <span class="message">\({{ step.expression }}\) = </span>
+                    <span class="message">\({{ step.value }}\) {{ step.unit }} </span>
+                {% else %}
+                    <span class="message">{{ step.text }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{% endblock %}
