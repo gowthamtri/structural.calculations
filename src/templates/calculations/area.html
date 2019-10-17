@@ -1,0 +1,16 @@
+{% extends "calculation_base.html" %}
+
+{% block inputs %}
+<form action="{{ calculation_route }}" method="post">
+    <div class="form-group">
+        <label for="length">Length</label>
+        <input type="number" class="form-control" id="length" name="length" aria-describedby="lengthHelp" placeholder="100" value="{{ inputs.length }}">
+        <small id="lengthHelp" class="form-text text-muted">Length</small>
+    </div>
+    <div class="form-group">
+        <label for="breadth">Breadth</label>
+        <input type="number" class="form-control" id="breadth" name="breadth" placeholder="100" value="{{ inputs.breadth }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% endblock %}

@@ -5,8 +5,17 @@ Home
 {% block content %}
 <p>Home page for the Visual Studio Code Flask tutorial.</p>
 
-<ol>
-    <li><a href="/calculate">Calculate</a></li>
-</ol>
+<div class="card">
+    <div class="card-header">
+        Calculation Apps
+    </div>
+    <div class="card-body">
+        <ol>
+            {% for app in apps %}
+            <li><a href="{{ app.route }}"> {{ app.name }} </a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
 
 {% endblock %}

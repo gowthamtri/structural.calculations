@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %}
+Calculation
+{% endblock %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div>
+        <h1 class="display-4">{{ header }}</h1>
+        <p class="lead">{{ description }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                Inputs
+            </div>
+            <div class="card-body">
+                {% block inputs %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Calculation Report
+            </div>
+            <div class="card-body">
+                {%if report %}
+                {% for section in report.sections %}
+                <div class="report-div">
+                    {% for step in section.steps %}
+                    <div>
+                        {%if step.expression %}
+                        <span class="message">{{ step.description }}, </span>
+                        <span class="message">\({{ step.symbol }}\) = </span>
+                        <span class="message">\({{ step.expression }}\) = </span>
+                        <span class="message">\({{ step.value }}\) {{ step.unit }} </span>
+                        {%elif step.symbol %}
+                        <span class="message">{{ step.description }}, </span>
+                        <span class="message">\({{ step.symbol }}\) = </span>
+                        <span class="message">\({{ step.value }}\) {{ step.unit }} </span>
+                        {% else %}
+                        <span class="message">{{ step.text }}</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

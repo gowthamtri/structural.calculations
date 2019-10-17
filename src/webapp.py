@@ -1,3 +1,3 @@
 from . import app
-from . import views
+from . import common_views
 from . import calculations
