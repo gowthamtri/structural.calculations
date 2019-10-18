@@ -6,7 +6,7 @@ from sympy import *
 from sympy.simplify.fu import *
 
 template = "calculations/area.html"
-header = "Area calculator"
+header = "Test"
 description = ""
 calculation_route = "/area/"
 

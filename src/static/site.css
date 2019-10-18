@@ -1,10 +1,7 @@
-.full-page-div {
-    height: 98vh;
-    position: relative;
-    margin: 0;
+.maincontent {
+    padding: 10px;
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
+    height: 30px;
 }

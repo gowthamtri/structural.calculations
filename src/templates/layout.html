@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}" />
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
@@ -12,9 +13,6 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -27,30 +25,20 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">C</a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
-            </li>
-        </ul>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Calculations</a>
     </nav>
 
-    <div class="container-fluid full-page-div">
+    <div class="container-fluid maincontent">
         {% block content %}
         {% endblock %}
-        <hr />
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted pull-right">Copyright © 2019</p><br />
+    <div class="footer">
+        <div class="container-fluid">
+            <p class="text-muted pull-right">Copyright © 2019</p>
         </div>
-        </div>
+    </div>
 </body>
 
 </html>
