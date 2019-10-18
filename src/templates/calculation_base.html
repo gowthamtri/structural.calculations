@@ -10,7 +10,7 @@ Calculation
             <div class="card-header">
                 Inputs
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto">
                 {% block inputs %}
                 {% endblock %}
             </div>
@@ -22,7 +22,7 @@ Calculation
             <div class="card-header">
                 Calculation Report
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto">
                 {%if report %}
                 {% for section in report.sections %}
                 <div class="report-div">

@@ -2,8 +2,7 @@ from ... import app
 from src.shared.report import section, sheet
 from flask import jsonify, render_template, request
 
-from sympy import *
-from sympy.simplify.fu import *
+from sympy import symbols, latex
 
 template = "calculations/area.html"
 header = "Test"
@@ -30,11 +29,11 @@ class AreaCalculator(object):
         section.new_equation_step(b, "Breadth", latex(b), inputs.breadth, "m")
         section.new_equation_step(A, "Area", latex(expr), expr.subs([(l, inputs.length), (b, inputs.breadth)]), "m²")
 
-@app.route('/area/')
+@app.route(calculation_route)
 def layout():
     return render(AreaCalculationInputs(10, 20), None)
 
-@app.route('/area/', methods=['POST'])
+@app.route(calculation_route, methods=['POST'])
 def calculate():
     inputs = get_inputs(request.form)
     calculator = AreaCalculator(inputs)
@@ -42,14 +41,7 @@ def calculate():
     return render(inputs, calculator.report)
 
 def render(inputs, report):
-    return render_template(
-        template,
-        header=header,
-        description=description,
-        report=report,
-        calculation_route=calculation_route,
-        inputs=inputs
-    )
+    return render_template(template, header=header, description=description, report=report,calculation_route=calculation_route, inputs=inputs)
 
 def get_inputs(form):
     return AreaCalculationInputs(form['length'], form['breadth'])

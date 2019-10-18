@@ -1,0 +1,47 @@
+{% extends "calculation_base.html" %}
+{% block inputs %}
+<form action="{{ calculation_route }}" method="post">
+    <div class="form-group">
+        <label for="elementtype">Element type</label>
+        <select class="form-control" id="elementtype" name="elementtype">
+            {% for element in inputs.element_types %}
+                {% if element['value'] == inputs.elementtype %}
+                    <option value="{{ element.value }}" selected>{{ element.description }}</option>
+                {% else %}
+                    <option value="{{ element.value }}">{{ element.description }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="width">Width</label>
+        <input type="number" class="form-control" id="width" name="width" placeholder="100" value="{{ inputs.width }}">
+    </div>
+    <div class="form-group">
+        <label for="depth">Depth</label>
+        <input type="number" class="form-control" id="depth" name="depth" placeholder="100" value="{{ inputs.depth }}">
+    </div>
+    <div class="form-group">
+        <label for="rh">Rh</label>
+        <input type="number" class="form-control" id="rh" name="rh" placeholder="100" value="{{ inputs.rh }}">
+    </div>
+    <div class="form-group">
+        <label for="fck">Fck</label>
+        <input type="number" class="form-control" id="fck" name="fck" placeholder="100" value="{{ inputs.fck }}">
+    </div>
+    <div class="form-group">
+        <label for="t">T</label>
+        <input type="number" class="form-control" id="t" name="t" placeholder="100" value="{{ inputs.t }}">
+    </div>
+    <div class="form-group">
+        <label for="t0">T0</label>
+        <input type="number" class="form-control" id="t0" name="t0" placeholder="100" value="{{ inputs.t0 }}">
+    </div>
+    <div class="form-group">
+        <label for="temperature">Temperature</label>
+        <input type="number" class="form-control" id="temperature" name="temperature" placeholder="100" value="{{ inputs.temperature }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+{% endblock %}
