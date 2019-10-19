@@ -1,7 +1,8 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
 module.exports = {
     entry: {
-        creep_coeff: './src/components/apps/creep_coeff/index.js'
+        creep_coeff: './src/calculations/creep_coeff/ui/index.js'
     },
     output: {
         filename: '[name].js',
