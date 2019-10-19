@@ -8,6 +8,7 @@ template = "calculations/creep_coefficient.html"
 header = "Creep coefficient"
 description = "Calculate creep coefficient"
 calculation_route = "/creepcoeff/"
+script_file = "creep_coeff.js"
 
 class CreepCoefficientInputs(object):
     def __init__(self):
