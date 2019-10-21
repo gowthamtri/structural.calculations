@@ -4,7 +4,7 @@ from flask import jsonify, render_template, request
 
 from sympy import symbols, latex
 
-template = "calculations/creep_coefficient.html"
+template = "calculation_base.html"
 header = "Creep coefficient"
 description = "Calculate creep coefficient"
 calculation_route = "/creepcoeff/"
@@ -42,7 +42,7 @@ class CreepCoefficientCalculator(object):
         self.inputs = inputs
 
     def calculate(self):
-        inputs = self.inputs
+        # inputs = self.inputs
         self.report = sheet.Sheet('Creep coefficient calculation')
         section = self.report.new_section('Input Data')
         section.new_text_step("Dummy text")
