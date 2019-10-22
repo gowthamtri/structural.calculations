@@ -4,29 +4,10 @@ import TextInput from "./../../../components/TextInput.jsx";
 import SelectListInput from "./../../../components/SelectListInput.jsx";
 
 class CreepCoefficientsInputs extends Component {
-    constructor() {
+    constructor(data) {
         super();
-        this.state = {            
-            width: 30,
-            depth: 50,
-            rh: 10,
-            fck: 5,
-            t: 10,
-            t0: 3,
-            temperature: 30,
-            elementtype: "Beam",
-            options: [{
-                value: 1,
-                description: "Beam"
-            }, {
-                value: 2,
-                description: "Slab internal"
-            }, {
-                value: 3,
-                description: "Slab"
-            }]
-        };
-
+        this.state = JSON.parse(data.inputs);
+        console.log(this.state);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -41,10 +22,10 @@ class CreepCoefficientsInputs extends Component {
         event.preventDefault();
     }
 
-    render() {
+    render() {        
         return (
             <form id="inputs-form" action="/creepcoeff" method="post">
-                <SelectListInput text="Element type" label="Element type" id="elementtype" value={this.state.width} options={this.state.options} handleChange={this.handleChange} />
+                <SelectListInput text="Element type" label="Element type" id="elementtype" value={this.state.elementtype} options={this.state.element_types} handleChange={this.handleChange} />
                 <TextInput text="Width" label="Width" type="number" id="width" value={this.state.width} handleChange={this.handleChange} />
                 <TextInput text="Depth" label="Depth" type="number" id="depth" value={this.state.depth} handleChange={this.handleChange} />
                 <TextInput text="Rh" label="Rh" type="number" id="rh" value={this.state.rh} handleChange={this.handleChange} />
@@ -60,4 +41,4 @@ class CreepCoefficientsInputs extends Component {
 export default CreepCoefficientsInputs;
 
 const wrapper = document.getElementById("inputs-form");
-wrapper ? ReactDOM.render(<CreepCoefficientsInputs />, wrapper) : false;
+wrapper ? ReactDOM.render(<CreepCoefficientsInputs {...(wrapper.dataset)} />, wrapper) : false;
