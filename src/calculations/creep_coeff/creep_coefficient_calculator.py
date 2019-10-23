@@ -44,6 +44,8 @@ class CreepCoefficientInputs(object):
             ]
         }
 
+    for_json = __json__
+
 class CreepCoefficientCalculator(calculationbase.CalculationBase):
     def __init__(self, inputs):
         self.inputs = inputs
@@ -71,7 +73,7 @@ class CreepCoefficientCalculator(calculationbase.CalculationBase):
         self.add_equation(self.phi_rh, "Factor to allow the effect of relative humidity on the notional creep coefficient [Eq. B.3a] ", \
             self.phi_rh_expr, [(self.rh, 10), (self.t0, 20)], "m")
 
-template = "calculation_base.html"
+template = "calculation_base_react.html"
 header = "Creep coefficient"
 description = "Calculate creep coefficient"
 calculation_route = "/creepcoeff/"
@@ -86,7 +88,8 @@ def creep_coefficient_calculate():
     inputs = get_inputs(request.form)
     calculator = CreepCoefficientCalculator(inputs)
     calculator.calculate()
-    return render(json.dumps(inputs.__json__()), calculator.report)
+    return jsonify(json.dumps(calculator.report.__json__()))
+    # return render(json.dumps(inputs.__json__()), calculator.report)
 
 def render(inputs, report):
     return render_template(template, header=header, description=description, report=report, calculation_route=calculation_route, inputs=inputs)

@@ -1,1 +1,1 @@
-import CreepCoefficientsInputs from "./CreepCoefficientsInputs.jsx";
+import CreepCoefficient from "./CreepCoefficient.jsx";

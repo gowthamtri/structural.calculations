@@ -26,7 +26,8 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    watch: true
     // plugins: [
     //     new HtmlWebPackPlugin({
     //         template: "./src/index.html",

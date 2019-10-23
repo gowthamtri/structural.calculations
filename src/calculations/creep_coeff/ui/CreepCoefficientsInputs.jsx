@@ -1,30 +1,40 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import TextInput from "./../../../components/TextInput.jsx";
-import SelectListInput from "./../../../components/SelectListInput.jsx";
+import PropTypes from "prop-types";
+import TextInput from "./../../../components/controls/TextInput.jsx";
+import SelectListInput from "./../../../components/controls/SelectListInput.jsx";
 
 class CreepCoefficientsInputs extends Component {
-    constructor(data) {
+    constructor({ data, reportGenerated }) {
         super();
-        this.state = JSON.parse(data.inputs);
-        console.log(this.state);
+        this.state = data;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.reportGenerated = reportGenerated;
     }
 
     handleChange(event) {
-        console.log(event.target);        
         this.setState({ [event.target.name]: event.target.value });
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
+        let data = new FormData(event.target);
+        fetch("/creepcoeff", { method: 'POST', body: data })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.reportGenerated(result);
+                    this.setState({ isLoaded: true });
+                },
+                (error) => {
+                    this.setState({ isLoaded: true });
+                }
+            )
     }
 
-    render() {        
+    render() {
         return (
-            <form id="inputs-form" action="/creepcoeff" method="post">
+            <form id="inputs-form" onSubmit={this.handleSubmit}>
                 <SelectListInput text="Element type" label="Element type" id="elementtype" value={this.state.elementtype} options={this.state.element_types} handleChange={this.handleChange} />
                 <TextInput text="Width" label="Width" type="number" id="width" value={this.state.width} handleChange={this.handleChange} />
                 <TextInput text="Depth" label="Depth" type="number" id="depth" value={this.state.depth} handleChange={this.handleChange} />
@@ -38,7 +48,8 @@ class CreepCoefficientsInputs extends Component {
         );
     }
 }
+CreepCoefficientsInputs.propTypes = {
+    data: PropTypes.any.isRequired,
+    reportGenerated: PropTypes.func.isRequired
+};
 export default CreepCoefficientsInputs;
-
-const wrapper = document.getElementById("inputs-form");
-wrapper ? ReactDOM.render(<CreepCoefficientsInputs {...(wrapper.dataset)} />, wrapper) : false;

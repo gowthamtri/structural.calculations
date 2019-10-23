@@ -30,7 +30,7 @@ Calculation
             <div class="card-body overflow-auto">
                 {%if report %}
                 {% for section in report.sections %}
-                <div class="report-div">
+                <div class="report-section-div">
                     {% for step in section.steps %}
                     <div>
                         {%if step.expression %}

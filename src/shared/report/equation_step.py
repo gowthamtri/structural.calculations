@@ -33,7 +33,7 @@ class EquationStep(Step):
         return {
             'symbol': self.symbol,
             'expression': self.expression,
-            'value': self.value,
+            'value': str(self.value),
             'description': self.description
         }
 

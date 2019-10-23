@@ -24,6 +24,7 @@ class Section(object):
 
     def __json__(self):
         return {
+            'header': self.header,
             'steps': [ x.__json__() for x in self.steps]
         }
 
