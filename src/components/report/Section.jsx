@@ -10,7 +10,7 @@ class Section extends Component {
         return (
             <div className="report-section-div">
                 <p>{this.props.section.header}</p>
-                {this.props.section.steps.map((step, index) => {
+                {this.props.section.steps.map(step => {
                     return (<Step step={step} />)
                 })}
             </div>

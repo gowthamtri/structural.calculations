@@ -22,7 +22,7 @@ class Report extends Component {
             return (
                 <div>
                     <h4>{report.header}</h4>
-                    {report.sections.map((sec, index) => {
+                    {report.sections.map(sec => {
                         return (<Section section={sec} />)
                     })}
                 </div>

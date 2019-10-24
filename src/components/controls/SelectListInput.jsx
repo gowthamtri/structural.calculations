@@ -4,7 +4,7 @@ const SelectListInput = ({ label, text, id, value, options, handleChange }) => (
     <div className="form-group">
         <label htmlFor={label}>{text}</label>
         <select className="form-control" id={id} name={id} value={value} name={id} onChange={handleChange}>
-            {options.map((item, index) => {
+            {options.map(item => {
                 return <option value={item.value}>{item.description}</option>
             })}
         </select>

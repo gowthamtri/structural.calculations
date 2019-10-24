@@ -1,4 +1,4 @@
-from ..report import section, sheet
+from ..report import section, sheet, table_step
 from sympy import latex
 
 class CalculationBase(object):
@@ -19,3 +19,12 @@ class CalculationBase(object):
 
     def add_equation(self, symbol, description, expression, subs, unit):
         self.section.new_equation_step(latex(symbol), description, latex(expression), expression.subs(subs), unit)
+    
+    def new_table(self):
+        self.table = self.section.new_table()
+    
+    def add_header(self, *argv):
+        self.table.add_header(*argv)
+    
+    def add_row(self, *argv):
+        self.table.add_row(*argv)
