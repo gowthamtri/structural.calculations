@@ -4,12 +4,12 @@ import TextInput from "./../../../components/controls/TextInput.jsx";
 import SelectListInput from "./../../../components/controls/SelectListInput.jsx";
 
 class CreepCoefficientsInputs extends Component {
-    constructor({ data, reportGenerated }) {
+    constructor({ data, onCalculate }) {
         super();
         this.state = data;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.reportGenerated = reportGenerated;
+        this.onCalculate = onCalculate;
     }
 
     handleChange(event) {
@@ -18,18 +18,8 @@ class CreepCoefficientsInputs extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let data = new FormData(event.target);
-        fetch("/creepcoeff", { method: 'POST', body: data })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.reportGenerated(result);
-                    this.setState({ isLoaded: true });
-                },
-                (error) => {
-                    this.setState({ isLoaded: true });
-                }
-            )
+        // let data = new FormData(event.target);
+        this.onCalculate(this.state);
     }
 
     render() {

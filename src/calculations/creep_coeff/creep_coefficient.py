@@ -90,7 +90,7 @@ def creep_coefficient_layout():
 
 @app.route(calculation_route, methods=['POST'])
 def creep_coefficient_calculate():
-    inputs = get_inputs(request.form)
+    inputs = get_inputs(request.json)
     calculator = CreepCoefficientCalculator(inputs)
     calculator.calculate()
     return jsonify(json.dumps(calculator.report.__json__()))
