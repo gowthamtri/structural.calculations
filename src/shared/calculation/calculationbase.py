@@ -7,9 +7,18 @@ class CalculationBase(object):
 
     def new_sheet(self, name):
         self.report = sheet.Sheet(name)
+    
+    def new_section_group(self, name):
+        self.section_group = self.report.new_section_group(name)
+
+    def close_section_group(self):
+        self.section_group = None
 
     def new_section(self, name):
-        self.section = self.report.new_section(name)
+        if hasattr(self, 'section_group') and self.section_group != None:
+            self.section = self.section_group.new_section(name)
+        else:
+            self.section = self.report.new_section(name)
 
     def new_text(self, text):
         self.section.new_text_step(text)

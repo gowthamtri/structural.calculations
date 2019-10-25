@@ -23,7 +23,17 @@ class Report extends Component {
                 <div>
                     <h4>{report.header}</h4>
                     {report.sections.map(sec => {
-                        return (<Section section={sec} />)
+                        if (sec.sections) {
+                            return (<div className="row">
+                                {sec.sections.map(subs => {
+                                    return (<div className="col">
+                                        <Section section={subs} />
+                                    </div>);
+                                })}
+                            </div>);
+                        } else {
+                            return (<Section section={sec} />);
+                        }
                     })}
                 </div>
             );

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import MathJax from 'react-mathjax2'
+import MathJax from 'react-mathjax2';
+
+import Table from './Table.jsx';
 
 class Step extends Component {
     constructor(props) {
@@ -30,30 +32,7 @@ class Step extends Component {
                 </MathJax.Context>
             );
         } else if (step.headers) {
-            return (
-                <table className="table table-hover table-bordered">
-                    <thead>
-                        {step.headers.map(header => {
-                            return (
-                                <tr>
-                                    {header.cells.map(cell => {
-                                        return (<td colSpan={cell.col_span} rowSpan={cell.row_span}>{cell.content}</td>);
-                                    })}
-                                </tr>);
-                        })}
-                    </thead>
-                    <tbody>
-                        {step.rows.map(row => {
-                            return (
-                                <tr>
-                                    {row.cells.map((cell, cellIndex) => {
-                                        return (<td colSpan={cell.col_span} rowSpan={cell.row_span}>{cell.content}</td>);
-                                    })}
-                                </tr>);
-                        })}
-                    </tbody>
-                </table>
-            );
+            return (<Table step={step} />);
         } else {
             return (
                 <div>

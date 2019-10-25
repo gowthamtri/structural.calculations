@@ -69,15 +69,14 @@ class CreepCoefficientCalculator(calculationbase.CalculationBase):
         self.new_section("Calcualtions")
         self.phi_rh = symbols("phi_rh")
         self.phi_rh_expr = 1 + (1 - 0.01 * self.rh) / (0.1 * (self.t0 ** (1 / 3)))
-        # self.phi_rh = 1 + (1 - 0.01 * self.rh) / (0.1 * (self.t0 ^ (1 / 3)))
         self.add_equation(self.phi_rh, "Factor to allow the effect of relative humidity on the notional creep coefficient [Eq. B.3a] ", \
             self.phi_rh_expr, [(self.rh, 10), (self.t0, 20)], "m")
 
         self.new_table()
-        self.add_header('A', { 'colspan': 2 }, 'B', { 'rowspan': 2 }, 'C', 'D')
-        self.add_header('A1', 'A2', 'C1', 'D1')
-        self.add_row(1, 2, 3, 4, '5')
-        self.add_row(1, 2, 3, 4, '5')
+        self.add_header('Description', 'Value')
+        self.add_row("Width, " + latex(self.width), { 'style': 'latex'}, inputs.width)
+        self.add_row("Depth, " + latex(self.depth), { 'style': 'latex'}, inputs.depth)
+        self.add_row("Rh, " + latex(self.rh), { 'style': 'latex'}, inputs.rh)
 
 template = "calculation_base_react.html"
 header = "Creep coefficient"

@@ -1,16 +1,21 @@
 from .step import Step
 
 class TableCell(object):
-    def __init__(self, content, col_span = 1, row_span = 1):
+    """Class to define a cell in table.
+    Currently supported custom styles: latex
+    """
+    def __init__(self, content, col_span = 1, row_span = 1, style = ''):
         self.content = content
         self.col_span = col_span
         self.row_span = row_span
+        self.style = style
     
     def __json__(self):
         return {
             'content': self.content,
             'col_span': self.col_span,
-            'row_span': self.row_span
+            'row_span': self.row_span,
+            'style': self.style
         }
 
     for_json = __json__
@@ -49,6 +54,8 @@ class TableStep(Step):
                     cells[len(cells) - 1].col_span = arg['colspan']
                 if 'rowspan' in arg:
                     cells[len(cells) - 1].row_span = arg['rowspan']
+                if 'style' in arg:
+                    cells[len(cells) - 1].style = arg['style']
         return cells
     
     def __json__(self):

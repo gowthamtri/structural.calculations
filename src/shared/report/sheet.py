@@ -1,4 +1,5 @@
 from .section import Section
+from .section_group import SectionGroup
 
 class Sheet(object):
     def __init__(self, header):
@@ -13,6 +14,11 @@ class Sheet(object):
         section = Section(header)
         self._sections.append(section)
         return section
+    
+    def new_section_group(self, header):
+        section_group = SectionGroup(header)
+        self._sections.append(section_group)
+        return section_group
 
     def __json__(self):
         return {
