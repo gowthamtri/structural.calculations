@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Step from './Step.jsx';
+import Step from './Step';
 
 class Section extends Component {
     constructor(props) {

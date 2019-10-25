@@ -1,1 +1,1 @@
-import CreepCoefficient from "./ui/CreepCoefficient.jsx";
+import CreepCoefficient from "./ui/CreepCoefficient";

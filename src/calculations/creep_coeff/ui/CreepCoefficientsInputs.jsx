@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import TextInput from "./../../../components/controls/TextInput.jsx";
-import SelectListInput from "./../../../components/controls/SelectListInput.jsx";
+import TextInput from "reactcomponents/controls/TextInput";
+import SelectListInput from "reactcomponents/controls/SelectListInput";
 
 class CreepCoefficientsInputs extends Component {
     constructor({ data, onCalculate }) {

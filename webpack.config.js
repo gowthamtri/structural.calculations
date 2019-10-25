@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path')
 
 module.exports = {
     entry: {
@@ -26,6 +27,13 @@ module.exports = {
                 ]
             }
         ]
+    },
+    resolve: {
+        extensions: ['.jsx', '.js'],
+        unsafeCache: true,
+        alias: {
+            reactcomponents: path.resolve(__dirname, 'src', 'reactcomponents')
+        }
     },
     watch: true
     // plugins: [

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import CreepCoefficientsInputs from './CreepCoefficientsInputs.jsx';
-import Report from '../../../components/report/Report.jsx';
+import CreepCoefficientsInputs from './CreepCoefficientsInputs';
+import Report from 'reactcomponents/report/Report';
 
 class CreepCoefficient extends Component {
     constructor(data) {
         super();
-        this.data = JSON.parse(data.inputs);
         this.state = {
+            data: JSON.parse(data.inputs),
             report: {
                 "header": "Please run the calculation"
             }
@@ -37,7 +37,7 @@ class CreepCoefficient extends Component {
                             Inputs
                         </div>
                         <div className="card-body overflow-auto">
-                            <CreepCoefficientsInputs data={this.data} onCalculate={this.onCalculate} />
+                            <CreepCoefficientsInputs data={this.state.data} onCalculate={this.onCalculate} />
                         </div>
                     </div>
                 </div>

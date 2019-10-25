@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MathJax from 'react-mathjax2';
 
-import Table from './Table.jsx';
+import Table from './Table';
 
 class Step extends Component {
     constructor(props) {

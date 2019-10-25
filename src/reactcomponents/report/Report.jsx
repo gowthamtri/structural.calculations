@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Section from './Section.jsx';
+import Section from './Section';
 
 class Report extends Component {
     constructor(props) {
