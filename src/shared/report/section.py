@@ -1,6 +1,6 @@
-from .text_step import TextStep
-from .equation_step import EquationStep
-from .table_step import TableStep
+from src.shared.report.text_step import TextStep
+from src.shared.report.equation_step import EquationStep
+from src.shared.report.table_step import TableStep
 
 class Section(object):
     def __init__(self, header):

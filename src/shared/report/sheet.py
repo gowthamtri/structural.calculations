@@ -1,5 +1,5 @@
-from .section import Section
-from .section_group import SectionGroup
+from src.shared.report.section import Section
+from src.shared.report.section_group import SectionGroup
 
 class Sheet(object):
     def __init__(self, header):

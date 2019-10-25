@@ -1,4 +1,4 @@
-from .step import Step
+from src.shared.report.step import Step
 
 class EquationStep(Step):
     def __init__(self, symbol, description, expr, value, unit):

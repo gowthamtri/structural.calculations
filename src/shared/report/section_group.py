@@ -1,4 +1,4 @@
-from .section import Section
+from src.shared.report.section import Section
 
 class SectionGroup(object):
     def __init__(self, header):

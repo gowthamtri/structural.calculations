@@ -74,9 +74,9 @@ class CreepCoefficientCalculator(calculationbase.CalculationBase):
 
         self.new_table()
         self.add_header('Description', 'Value')
-        self.add_row("Width, " + latex(self.width), { 'style': 'latex'}, inputs.width)
-        self.add_row("Depth, " + latex(self.depth), { 'style': 'latex'}, inputs.depth)
-        self.add_row("Rh, " + latex(self.rh), { 'style': 'latex'}, inputs.rh)
+        self.add_row("Width", inputs.width)
+        self.add_row("Depth", inputs.depth)
+        self.add_row("Rh", inputs.rh)
 
 template = "calculation_base_react.html"
 header = "Creep coefficient"

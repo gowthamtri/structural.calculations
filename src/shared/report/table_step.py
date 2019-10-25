@@ -1,4 +1,4 @@
-from .step import Step
+from src.shared.report.step import Step
 
 class TableCell(object):
     """Class to define a cell in table.

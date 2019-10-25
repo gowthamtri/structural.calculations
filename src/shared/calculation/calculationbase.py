@@ -1,4 +1,4 @@
-from ..report import section, sheet, table_step
+from src.shared.report import section, sheet, table_step
 from sympy import latex
 
 class CalculationBase(object):
