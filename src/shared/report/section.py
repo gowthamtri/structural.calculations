@@ -1,5 +1,6 @@
-from .text_step import TextStep
-from .equation_step import EquationStep
+from src.shared.report.text_step import TextStep
+from src.shared.report.equation_step import EquationStep
+from src.shared.report.table_step import TableStep
 
 class Section(object):
     def __init__(self, header):
@@ -21,9 +22,15 @@ class Section(object):
     def new_equation_step(self, symbol, description, expr, value, unit):
         step = EquationStep(symbol, description, expr, value, unit)
         self._steps.append(step)
+    
+    def new_table(self) -> TableStep:
+        step = TableStep()
+        self._steps.append(step)
+        return step
 
     def __json__(self):
         return {
+            'header': self.header,
             'steps': [ x.__json__() for x in self.steps]
         }
 

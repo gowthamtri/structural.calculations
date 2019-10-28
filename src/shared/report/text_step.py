@@ -1,4 +1,4 @@
-from .step import Step
+from src.shared.report.step import Step
 
 class TextStep(Step):
     def __init__(self, text):

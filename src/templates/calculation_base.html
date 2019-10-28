@@ -2,6 +2,10 @@
 {% block title %}
 Calculation
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/static/creep_coeff.js"></script>
+{% endblock %}
 {% block content %}
 
 <div class="row">
@@ -11,6 +15,7 @@ Calculation
                 Inputs
             </div>
             <div class="card-body overflow-auto">
+                <div id="inputs-form" data-inputs="{{ inputs }}"></div>
                 {% block inputs %}
                 {% endblock %}
             </div>
@@ -25,24 +30,29 @@ Calculation
             <div class="card-body overflow-auto">
                 {%if report %}
                 {% for section in report.sections %}
-                <div class="report-div">
-                    {% for step in section.steps %}
-                    <div>
-                        {%if step.expression %}
-                        <span class="message">{{ step.description }}, </span>
-                        <span class="message">\({{ step.symbol }}\) = </span>
-                        <span class="message">\({{ step.expression }}\) = </span>
-                        <span class="message">\({{ step.value }}\) {{ step.unit }} </span>
-                        {%elif step.symbol %}
-                        <span class="message">{{ step.description }}, </span>
-                        <span class="message">\({{ step.symbol }}\) = </span>
-                        <span class="message">\({{ step.value }}\) {{ step.unit }} </span>
-                        {% else %}
-                        <span class="message">{{ step.text }}</span>
-                        {% endif %}
+                {%if section.sections %}
+                <div class="row">
+                    {% for subsection in section.sections %}
+                    <div class="col">
+                        <p>{{ subsection.header }}</p>
+                        <div class="report-section-div">
+                            {% for step in subsection.steps %}
+                            {%include "report_step.html" %}
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
+                {% else %}
+                <div>
+                    <p>{{ section.header }}</p>
+                    <div class="report-section-div">
+                        {% for step in section.steps %}
+                        {%include "report_step.html" %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
                 {% endfor %}
                 {% endif %}
             </div>
