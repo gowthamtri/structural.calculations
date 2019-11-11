@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
+import { Canvas } from 'react-three-fiber'
+
 import CreepCoefficientsInputs from './CreepCoefficientsInputs';
 import Report from 'reactcomponents/report/Report';
+import Thing from 'reactcomponents/three/Thing';
 
 class CreepCoefficient extends Component {
     constructor(data) {
@@ -42,6 +45,11 @@ class CreepCoefficient extends Component {
                     </div>
                 </div>
                 <div className="col-8">
+                    <Canvas>
+                        <Thing />
+                    </Canvas>
+                </div>
+                {/* <div className="col-8">
                     <div className="card">
                         <div className="card-header">
                             Calculation Report
@@ -50,7 +58,7 @@ class CreepCoefficient extends Component {
                             <Report report={this.state.report} />
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
