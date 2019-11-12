@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import { Canvas } from 'react-three-fiber'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 import CreepCoefficientsInputs from './CreepCoefficientsInputs';
 import Report from 'reactcomponents/report/Report';
@@ -31,6 +33,10 @@ class CreepCoefficient extends Component {
         });
     }
 
+    onTabSelected(event) {
+        console.log(event)
+    }
+
     render() {
         return (
             <div className="row">
@@ -45,20 +51,26 @@ class CreepCoefficient extends Component {
                     </div>
                 </div>
                 <div className="col-8">
-                    <Canvas>
-                        <Thing />
-                    </Canvas>
+                    <Tabs defaultActiveKey="model" onSelect={this.onTabSelected}>
+                        <Tab eventKey="model" title="Model">
+                            <div className="col-12">
+                                <Canvas>
+                                    <Thing />
+                                </Canvas>
+                            </div>
+                        </Tab>
+                        <Tab eventKey="report" title="Report">
+                            <div className="card">
+                                <div className="card-header">
+                                    Calculation Report
+                                </div>
+                                <div className="card-body overflow-auto">
+                                    <Report report={this.state.report} />
+                                </div>
+                            </div>
+                        </Tab>
+                    </Tabs>
                 </div>
-                {/* <div className="col-8">
-                    <div className="card">
-                        <div className="card-header">
-                            Calculation Report
-                        </div>
-                        <div className="card-body overflow-auto">
-                            <Report report={this.state.report} />
-                        </div>
-                    </div>
-                </div> */}
             </div>
         );
     }

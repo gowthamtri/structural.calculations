@@ -5,3 +5,14 @@
 .footer {
     height: 30px;
 }
+
+/** Horizontally arranges controls within a container. */
+.tab-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/** The tabs fill the area left remaining from the icons. */
+.tabs {
+    flex: 1;
+}

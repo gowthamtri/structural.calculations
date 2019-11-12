@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path')
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: {
@@ -9,6 +10,8 @@ module.exports = {
         filename: '[name].js',
         path: __dirname + '/src/static/'
     },
+    // target: 'node', // in order to ignore built-in modules like path, fs, etc. 
+    // externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     module: {
         rules: [
             {
@@ -35,7 +38,12 @@ module.exports = {
             reactcomponents: path.resolve(__dirname, 'src', 'reactcomponents')
         }
     },
-    watch: true
+    watch: true,
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //     },
+    // },
     // plugins: [
     //     new HtmlWebPackPlugin({
     //         template: "./src/index.html",
