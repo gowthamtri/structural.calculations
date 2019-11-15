@@ -18,7 +18,6 @@ class CreepCoefficientsInputs extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // let data = new FormData(event.target);
         this.onCalculate(this.state);
     }
 
