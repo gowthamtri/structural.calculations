@@ -16,3 +16,8 @@
 .tabs {
     flex: 1;
 }
+
+.fill {
+    height: 85vh;
+    width: 85vw;
+}

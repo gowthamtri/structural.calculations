@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import { Canvas } from 'react-three-fiber'
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
 
 import CreepCoefficientsInputs from './CreepCoefficientsInputs';
 import Report from 'reactcomponents/report/Report';
@@ -16,9 +14,13 @@ class CreepCoefficient extends Component {
             data: JSON.parse(data.inputs),
             report: {
                 "header": "Please run the calculation"
-            }
+            },
+            showModel: true,
+            showReport: false,
         };
         this.onCalculate = this.onCalculate.bind(this);
+        this.onModelClick = this.onModelClick.bind(this);
+        this.onReportClick = this.onReportClick.bind(this);
     }
 
     onCalculate(data) {
@@ -37,7 +39,33 @@ class CreepCoefficient extends Component {
         console.log(event)
     }
 
+    onReportClick(event) {
+        this.setState({ showReport: true, showModel: false });
+    }
+
+    onModelClick(event) {
+        this.setState({ showModel: true, showReport: false });
+    }
+
     render() {
+        let content;
+        if (this.state.showReport) {
+            content = <div className="card">
+                <div className="card-header">
+                    Calculation Report
+                                </div>
+                <div className="card-body overflow-auto">
+                    <Report report={this.state.report} />
+                </div>
+            </div>
+        } else if (this.state.showModel) {
+            content = <div className="col-12 fill">
+                <Canvas>
+                    <Thing />
+                </Canvas>
+            </div>
+        }
+
         return (
             <div className="row">
                 <div className="col-4">
@@ -51,25 +79,11 @@ class CreepCoefficient extends Component {
                     </div>
                 </div>
                 <div className="col-8">
-                    <Tabs defaultActiveKey="model" onSelect={this.onTabSelected}>
-                        <Tab eventKey="model" title="Model">
-                            <div className="col-12">
-                                <Canvas>
-                                    <Thing />
-                                </Canvas>
-                            </div>
-                        </Tab>
-                        <Tab eventKey="report" title="Report">
-                            <div className="card">
-                                <div className="card-header">
-                                    Calculation Report
-                                </div>
-                                <div className="card-body overflow-auto">
-                                    <Report report={this.state.report} />
-                                </div>
-                            </div>
-                        </Tab>
-                    </Tabs>
+                    <div className="row">
+                        <button onClick={this.onModelClick} className={this.state.showModel ? 'btn btn-primary' : 'btn btn-light'}>Model</button>
+                        <button onClick={this.onReportClick} className={this.state.showReport ? 'btn btn-primary' : 'btn btn-light'}>Report</button>
+                    </div>
+                    {content}
                 </div>
             </div>
         );
