@@ -11,14 +11,14 @@ module.exports = {
         filename: '[name].js',
         path: __dirname + '/src/static/'
     },
-    target: 'node', // in order to ignore built-in modules like path, fs, etc. 
-    externals: [ 
+    // target: 'node', // in order to ignore built-in modules like path, fs, etc. 
+    // externals: [ 
         // nodeExternals()
         // {
         //     'three': 'three',
         //     'react-three-fiber': 'react-three-fiber',
         // }
-    ], // in order to ignore all modules in node_modules folder
+    // ], // in order to ignore all modules in node_modules folder
     module: {
         rules: [
             {
@@ -65,5 +65,29 @@ module.exports = {
         //     'Promise':    'bluebird',
         //     'axios': 'axios'
         // })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+          chunks: 'all',
+          minSize: 30000,
+          maxSize: 0,
+          minChunks: 1,
+          maxAsyncRequests: 5,
+          maxInitialRequests: 3,
+          automaticNameDelimiter: '-',
+          automaticNameMaxLength: 30,
+          name: true,
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true
+            }
+          }
+        }
+    }
 }

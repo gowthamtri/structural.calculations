@@ -5,7 +5,7 @@ import { Canvas } from 'react-three-fiber'
 
 import CreepCoefficientsInputs from './CreepCoefficientsInputs';
 import Report from 'reactcomponents/report/Report';
-import Thing from 'reactcomponents/three/Thing';
+import Slab from 'reactcomponents/three/Slab';
 
 class CreepCoefficient extends Component {
     constructor(data) {
@@ -61,7 +61,7 @@ class CreepCoefficient extends Component {
         } else if (this.state.showModel) {
             content = <div className="col-12 fill">
                 <Canvas>
-                    <Thing />
+                    <Slab />
                 </Canvas>
             </div>
         }
