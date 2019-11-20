@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import { Canvas } from 'react-three-fiber'
+
+import Report from 'reactcomponents/report/Report';
 
 import CreepCoefficientsInputs from './CreepCoefficientsInputs';
-import Report from 'reactcomponents/report/Report';
-import Slab from 'reactcomponents/three/Slab';
+import CreepModel from './model3d/CreepModel.jsx';
 
 class CreepCoefficient extends Component {
     constructor(data) {
@@ -35,10 +35,6 @@ class CreepCoefficient extends Component {
         });
     }
 
-    onTabSelected(event) {
-        console.log(event)
-    }
-
     onReportClick(event) {
         this.setState({ showReport: true, showModel: false });
     }
@@ -53,16 +49,14 @@ class CreepCoefficient extends Component {
             content = <div className="card">
                 <div className="card-header">
                     Calculation Report
-                                </div>
+                </div>
                 <div className="card-body overflow-auto">
                     <Report report={this.state.report} />
                 </div>
             </div>
         } else if (this.state.showModel) {
             content = <div className="col-12 fill">
-                <Canvas>
-                    <Slab />
-                </Canvas>
+                <CreepModel />
             </div>
         }
 
