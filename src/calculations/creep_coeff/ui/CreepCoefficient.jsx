@@ -15,8 +15,8 @@ class CreepCoefficient extends Component {
             report: {
                 "header": "Please run the calculation"
             },
-            showModel: true,
-            showReport: false,
+            showModel: false,
+            showReport: true,
         };
         this.onCalculate = this.onCalculate.bind(this);
         this.onModelClick = this.onModelClick.bind(this);
