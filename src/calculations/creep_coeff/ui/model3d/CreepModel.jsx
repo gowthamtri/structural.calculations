@@ -39,7 +39,7 @@ export function DimensionLine({ defaultStart, defaultEnd }) {
         <>
             <line>
                 <geometry attach="geometry" vertices={vertices} onUpdate={update} />
-                <lineBasicMaterial attach="material" color="gray" />
+                <lineBasicMaterial attach="material" color="red" />
             </line>
             <EndPoint position={start} />
             <EndPoint position={end} />
@@ -50,20 +50,21 @@ export function DimensionLine({ defaultStart, defaultEnd }) {
 const CreepModel = () => {
     const ref = useRef()
 
+    let size = 3;
     const elementShape = new THREE.Shape();
-    elementShape.moveTo(-10, -10);
-    elementShape.lineTo(10, -10);
-    elementShape.lineTo(10, 10);
-    elementShape.lineTo(-10, 10);
+    elementShape.moveTo(-size, -size);
+    elementShape.lineTo(size, -size);
+    elementShape.lineTo(size, size);
+    elementShape.lineTo(-size, size);
 
-    const extrudeSettings = { steps: 1, depth: 1, bevelEnabled: false };
+    const extrudeSettings = { steps: 1, depth: 0.5, bevelEnabled: false };
     const elementGeometry = new THREE.ExtrudeGeometry(elementShape, extrudeSettings);
     const material = useMemo(() => new THREE.MeshBasicMaterial({ color: 'gray' }), [])
 
     return (
         <Canvas>
             <mesh ref={ref} args={[elementGeometry]} material={material} />
-            <DimensionLine defaultStart={[20, 20, 0]} defaultEnd={[30, 30, 0]} />} />
+            <DimensionLine defaultStart={[-size, -size, 0]} defaultEnd={[size, size, 0]} />} />
             <Orbitter />
         </Canvas>
     )
