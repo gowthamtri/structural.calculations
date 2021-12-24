@@ -31,7 +31,7 @@
     "webpack-provide-global-plugin": "0.0.1"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-mathjax2": "0.0.2",
     "react-p5": "^1.1.3",
